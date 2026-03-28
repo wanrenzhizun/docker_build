@@ -11,7 +11,7 @@ on:
 
 env:
   REGISTRY: docker.io
-  IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/debian-vnc-sogou  # 修改为你的镜像名
+  IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/debian-vnc-nodejs-chrome-zh # 修改为你的镜像名
 
 jobs:
   build:
@@ -54,8 +54,8 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./Dockerfile
-          platforms: linux/amd64  # 如需多架构，添加: ,linux/arm64
+          file: ./Debian-Desktop-nodejs-chrome-zh.Dockerfile
+          platforms: linux/amd64,linux/arm64  # 如需多架构，添加: ,linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
